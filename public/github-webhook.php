@@ -18,7 +18,7 @@ if (isset($headers['X-GitHub-Event']) && $headers['X-GitHub-Event'] === 'push') 
         file_put_contents('/volume1/web/www/suracurost.ro/writable/logs/webhook.log', date('Y-m-d H:i:s') . " — push pe $branch\n", FILE_APPEND);
 
         // Execută actualizarea codului
-        shell_exec('cd /volume1/web/www/suracurost.ro && git pull origin main 2>&1');
+        shell_exec('cd /volume1/web/www/suracurost.ro && GIT_SSH_COMMAND="ssh -i /volume1/web/.ssh/id_ed25519 -o StrictHostKeyChecking=no" git pull origin main 2>&1');
     }
 }
 
