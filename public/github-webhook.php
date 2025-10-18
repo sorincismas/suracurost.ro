@@ -1,5 +1,5 @@
 <?php
-// Secretul setat în GitHub Webhook
+// Secretul setat în GitHub Webhook.
 $secret = '8mKR2mOs9O';  // modifică după cum vrei
 
 // Citește payloadul JSON trimis de GitHub
