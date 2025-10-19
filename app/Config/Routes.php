@@ -6,61 +6,29 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-// Poți adăuga aici o rută pentru pagina de contact a site-ului principal, dacă este necesar.
-// $routes->get('/contact', 'ContactController::index');
 
+// Grupăm rutele CRM sub prefixul 'crm'
+$routes->group('crm', static function ($routes) {
+    // Rutele existente pentru Dashboard
+    $routes->get('/', 'Crm\DashboardController::index'); // Dashboard-ul CRM va fi la /crm
 
-/*
- * --------------------------------------------------------------------
- * Rute pentru subdomeniul CRM
- * --------------------------------------------------------------------
- */
-$routes->group('', ['subdomain' => 'crm', 'namespace' => 'App\Controllers\Crm'], static function ($routes) {
-    
-    // Rute Publice (Autentificare)
-    // $routes->get('login', 'AuthController::login', ['as' => 'crm.login']);
-    // $routes->get('auth/callback', 'AuthController::callback');
-    // $routes->get('logout', 'AuthController::logout', ['as' => 'crm.logout']);
+    // Rutele existente pentru Angajati (adăugăm prefixul 'Crm\' la controller)
+    $routes->get('angajati', 'Crm\AngajatiController::index');
+    $routes->get('angajati/create', 'Crm\AngajatiController::create');
+    $routes->post('angajati/store', 'Crm\AngajatiController::store');
+    $routes->get('angajati/edit/(:num)', 'Crm\AngajatiController::edit/$1');
+    $routes->post('angajati/update/(:num)', 'Crm\AngajatiController::update/$1');
+    $routes->get('angajati/delete/(:num)', 'Crm\AngajatiController::delete/$1');
 
-    // --- Grup de rute protejate (necesită login) ---
-    // Când vom implementa autentificarea, vom activa filtrul de mai jos.
-    // $routes->group('', ['filter' => 'auth'], static function ($routes) {
-
-        // Dashboard
-        $routes->get('/', 'DashboardController::index', ['as' => 'crm.dashboard']);
-
-        // Angajati - CRUD
-        // Urmează un model RESTful mai detaliat
-        $routes->get('angajati', 'AngajatiController::index', ['as' => 'crm.angajati']);
-        $routes->get('angajati/form', 'AngajatiController::form', ['as' => 'crm.angajati.new']); // Afișează formularul gol
-        $routes->get('angajati/form/(:num)', 'AngajatiController::form/$1', ['as' => 'crm.angajati.edit']); // Afișează formularul pentru editare
-        $routes->post('angajati/save', 'AngajatiController::save', ['as' => 'crm.angajati.save']); // Salvează (creează sau actualizează)
-
-        // Aici se vor adăuga rutele pentru:
-        // - Clienti
-        // - Proiecte
-        // - Pontaj
-        // - Rapoarte
-        // - Concedii
-
-    // }); // Sfârșitul grupului protejat
+    // TODO: Adaugă aici și alte rute CRM pe măsură ce le dezvolți (ex: clienti, proiecte, pontaj etc.)
 });
 
 
-/*
- * --------------------------------------------------------------------
- * Additional Routing
- * --------------------------------------------------------------------
- *
- * There will often be times that you need additional routing and you
- * need it to be able to override any defaults in this file. Environment
- * based routes is one such time. require() additional route files here
- * to make that happen.
- *
- * You will have access to the $routes object within that file without
- * needing to reload it.
- */
-if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
-    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
-}
-
+// Rutele originale (le comentăm sau ștergem dacă nu mai sunt necesare în afara /crm)
+// $routes->get('/crm', 'Crm\DashboardController::index');
+// $routes->get('/crm/angajati', 'Crm\AngajatiController::index');
+// $routes->get('/crm/angajati/create', 'Crm\AngajatiController::create');
+// $routes->post('/crm/angajati/store', 'Crm\AngajatiController::store');
+// $routes->get('/crm/angajati/edit/(:num)', 'Crm\AngajatiController::edit/$1');
+// $routes->post('/crm/angajati/update/(:num)', 'Crm\AngajatiController::update/$1');
+// $routes->get('/crm/angajati/delete/(:num)', 'Crm\AngajatiController::delete/$1');
