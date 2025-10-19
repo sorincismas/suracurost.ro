@@ -1,3 +1,4 @@
+<?php
 <!DOCTYPE html>
 <html lang="ro" class="h-full bg-gray-100">
 <head>
@@ -22,7 +23,7 @@
                         <i class="fa-solid fa-chart-pie mr-3 flex-shrink-0 h-6 w-6 text-purple-300"></i>
                         Dashboard
                     </a>
-                    <a href="<?= site_url('angajati') ?>" class="text-purple-200 hover:bg-purple-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    <a href="<?= site_url('crm/angajati') ?>" class="text-purple-200 hover:bg-purple-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
                         <i class="fa-solid fa-users mr-3 flex-shrink-0 h-6 w-6 text-purple-300"></i>
                         Angajați
                     </a>
