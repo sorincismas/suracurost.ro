@@ -20,6 +20,10 @@ $routes->group('crm', static function ($routes) {
     $routes->post('angajati/update/(:num)', 'Crm\AngajatiController::update/$1');
     $routes->get('angajati/delete/(:num)', 'Crm\AngajatiController::delete/$1');
 
+    // Add form routes (optional id)
+    $routes->get('angajati/form', 'Crm\AngajatiController::form');
+    $routes->get('angajati/form/(:num)', 'Crm\AngajatiController::form/$1');
+
     // TODO: Adaugă aici și alte rute CRM pe măsură ce le dezvolți (ex: clienti, proiecte, pontaj etc.)
 });
 
