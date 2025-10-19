@@ -14,7 +14,7 @@ class AngajatiController extends BaseController
             'page_title' => 'Lista Angajați',
             'angajati'   => $userModel->findAll()
         ];
-        return view('Crm/angajati/index', $data);
+        return view('Crm/angajati/list', $data);
     }
 
     public function form($id = null)
@@ -37,37 +37,51 @@ class AngajatiController extends BaseController
     {
         $userModel = new UserModel();
         $id = $this->request->getPost('id');
+        $email = $this->request->getPost('email');
 
-        // Regulile de validare
+        // Regulile de validare (email - validare de bază; unicitatea este verificată manual mai jos)
         $rules = [
             'nume'    => 'required|min_length[3]',
             'prenume' => 'required|min_length[3]',
-            'email'   => 'required|valid_email|is_unique[users.email,id,' . ($id ?? 0) . ']',
+            'email'   => 'required|valid_email',
             'rol'     => 'required|in_list[admin,operator]',
             'status'  => 'required|in_list[activ,arhivat]'
         ];
 
+        // Verifică unicitatea email-ului
+        $existing = $userModel->where('email', $email)->first();
+        if ($existing) {
+            if (!$id || ($existing && $existing->id != $id)) {
+                return redirect()->back()->withInput()->with('errors', ['email' => 'Acest email este deja folosit.']);
+            }
+        }
+
         if (!$this->validate($rules)) {
-            // Dacă validarea eșuează, ne întoarcem la formular cu erorile
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $data = [
             'nume'    => $this->request->getPost('nume'),
             'prenume' => $this->request->getPost('prenume'),
-            'email'   => $this->request->getPost('email'),
+            'email'   => $email,
             'rol'     => $this->request->getPost('rol'),
             'functie' => $this->request->getPost('functie'),
             'zile_concediu_an' => $this->request->getPost('zile_concediu_an'),
             'status'  => $this->request->getPost('status'),
         ];
-        
-        $message = $id ? 'Angajat actualizat cu succes.' : 'Angajat adăugat cu succes.';
 
-        if ($userModel->save($data, $id)) {
-             return redirect()->to(site_url('angajati'))->with('success', $message);
+        // dacă e update, include id în date pentru Model::save
+        if ($id) {
+            $data['id'] = $id;
+            $message = 'Angajat actualizat cu succes.';
         } else {
-             return redirect()->back()->withInput()->with('error', 'A apărut o eroare la salvare.');
+            $message = 'Angajat adăugat cu succes.';
+        }
+
+        if ($userModel->save($data)) {
+            return redirect()->to(site_url('crm/angajati'))->with('success', $message);
+        } else {
+            return redirect()->back()->withInput()->with('error', 'A apărut o eroare la salvare.');
         }
     }
 }

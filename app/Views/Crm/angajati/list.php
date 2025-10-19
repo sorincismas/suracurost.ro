@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <div class="mb-4 text-right">
-    <a href="<?= site_url('angajati/form') ?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+    <a href="<?= site_url('crm/angajati/form') ?>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
         <i class="fa-solid fa-plus mr-2"></i> Adaugă Angajat
     </a>
 </div>
@@ -43,7 +43,7 @@
                         <?php endif; ?>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="<?= site_url('angajati/form/' . $angajat->id) ?>" class="text-purple-600 hover:text-purple-900">Editare</a>
+                        <a href="<?= site_url('crm/angajati/form/' . $angajat->id) ?>" class="text-purple-600 hover:text-purple-900">Editare</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
