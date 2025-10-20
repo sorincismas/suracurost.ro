@@ -56,7 +56,6 @@ class AngajatiController extends Controller
                            ->withInput()
                            ->with('message', 'A apărut o eroare la salvarea datelor. Vă rugăm încercați din nou.')
                            ->with('alert-type', 'danger');
-        }
     }
 
     public function edit($id = null)
@@ -180,5 +179,4 @@ class AngajatiController extends Controller
             ]
         ];
     }
-}
 }

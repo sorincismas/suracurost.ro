@@ -27,10 +27,13 @@ class AngajatModel extends Model
     protected $updatedField  = 'updated_at';
     
     protected $validationRules = [
-        'nume_prenume'   => 'required|min_length[3]|max_length[100]',
-        'cnp'            => 'required|exact_length[13]',
-        'id_firma'       => 'required|is_natural_no_zero',
-        'data_angajarii' => 'required|valid_date'
+        'nume_prenume'        => 'required|min_length[3]|max_length[100]',
+        'cnp'                 => 'required|exact_length[13]',
+        'id_firma'            => 'required|is_natural_no_zero',
+        'data_angajarii'      => 'required|valid_date',
+        'email'               => 'permit_empty|valid_email|max_length[255]',
+        'telefon'             => 'permit_empty|min_length[10]|max_length[20]',
+        'functie_departament' => 'permit_empty|max_length[100]'
     ];
     
     protected $validationMessages = [
