@@ -12,7 +12,15 @@ class AngajatModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
     
-    protected $allowedFields = ['nume_prenume', 'cnp', 'id_firma', 'data_angajarii'];
+    protected $allowedFields = [
+        'id_firma',
+        'nume_prenume',
+        'cnp',
+        'functie_departament',
+        'data_angajarii',
+        'email',
+        'telefon'
+    ];
     
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
