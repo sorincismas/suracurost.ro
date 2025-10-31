@@ -1,0 +1,33 @@
+3.0.9
+    - GC-494: Introducing a new PHP function `unsetSortingColumns` which you can unset the Sorting for the specified columns in the datagrid.
+    - GC-495: A new implementation for `callbackBeforeUpload`, `callbackUpload` and `callbackAfterUpload` methods.
+    - GC-496: setRelationNtoN is returning empty data on edit for PHP version 8.x.
+    - GC-497: Third Party CSS (like datepicker) doesn't load on master detail forms.
+3.0.8
+    - GC-427: Ability to fully redirect after a CRUD operation.
+    - GC-493: Introducing new PHP configuration `remember_state_upon_refresh`. Default value is `true`.
+3.0.7
+    - GC-490: Introducing `groceryCrudSetFieldValue` which you can set a form value externally with JavaScript.
+    - GC-491: Enabling the `show_image_preview` configuration to work as expected.
+    - GC-492: Fixing issue with error throwing when date or date time has invalid zero value such as '0000-00-00'.
+3.0.6
+    - GC-488: Multiple delete is throwing an error when using setRelation with where statement when we have an ambiguous primary field.
+    - GC-489: Issue with number of rows when we have a where statement on a setRelation
+    - GC-485: German locale is throwing an error when date and datetime field types are used.
+3.0.5
+    - GC-485: Spanish locale is throwing an error when date and datetime field types are used.
+    - GC-486: readOnlyAddFields, readOnlyEditFields and readOnlyCloneFields method doesn't work.
+    - GC-487: Delete button doesn't work on SQL view tables.
+3.0.4
+    - GC-483: Adding where functionality to setRelationDynamic
+    - GC-484: Fixing Inconsistent date and date time format and value from datagrid to CRUD form.
+3.0.3
+    - GC-481: When date columns are hidden and you press filtering with a date, React DatePicker doesn't appear correctly.
+    - GC-482: Issue with date and date-time values showing the wrong data within datagrid.
+3.0.2
+    - Fixing issue with failure error to appear as a simple popup message to the end user.
+    - GC-480 - MySQL Views doesn't consider the id from setPrimaryKey function on edit and delete.
+3.0.1
+    - Introducing new method `setDatagridButton` which we can apply extra datagrid buttons on top or bottom of the datagrid.
+3.0.0
+    - First official stable release of Grocery CRUD Enterprise v3.0.0.
